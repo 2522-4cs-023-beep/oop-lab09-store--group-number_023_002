@@ -35,6 +35,32 @@ void showProducts(DynamicArray<Product>& store) {
     printAll(store);
 }
 
+void sortByPrice(DynamicArray<Product>& store) {
+    if (store.isEmpty()) {
+        cout << "Store is empty" << endl;
+        return;
+    }
+    sortAscending(store);
+    cout << "Sorted by price:" << endl;
+    printAll(store);
+}
+
+void showMostExpensive(DynamicArray<Product>& store) {
+    if (store.isEmpty()) {
+        cout << "Store is empty" << endl;
+        return;
+    }
+    cout << "Most expensive: " << maxItem(store) << endl;
+}
+
+void showTotalValue(DynamicArray<Product>& store) {
+    double total = 0;
+    for (int i = 0; i < store.size(); i++) {
+        total += store[i].stockValue();
+    }
+    cout << "Total stock value: Rs. " << total << endl;
+}
+
 int main() {
     DynamicArray<Product> store;
     store.add(Product("Pen", 50, 100));
@@ -50,6 +76,9 @@ int main() {
             case 1: addProduct(store); break;
             case 2: removeProduct(store); break;
             case 3: showProducts(store); break;
+            case 4: sortByPrice(store); break;
+            case 5: showMostExpensive(store); break;
+            case 6: showTotalValue(store); break;
             case 0: cout << "Goodbye" << endl; break;
             default: cout << "Invalid choice" << endl;
         }
